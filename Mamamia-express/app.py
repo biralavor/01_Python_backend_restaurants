@@ -69,22 +69,12 @@ def remove_restaurant() :
   chosen_res = input('\nWhich of them do you want to remove? ')
   try :
     chosen_res = int(chosen_res)
-    print('Now removing: ')
-    match chosen_res :
-      case 1 :
-        print(f'{restaurants[0]}')
-        restaurants.pop(0)
-      case 2 :
-        print(f'{restaurants[1]}')
-        restaurants.pop(1)
-      case 3 :
-        print(f'{restaurants[2]}')
-        restaurants.pop(2)
-      case 4 :
-        print(f'{restaurants[3]}')
-        restaurants.pop(3)
-      case _ :
-        print('Invalid option')
+    if 1<= chosen_res <= len(restaurants) :
+      print('Now removing: ')
+      print(f'{restaurants[chosen_res - 1]}')
+      restaurants.pop(chosen_res - 1)
+    else :
+      print('Invalid option')
     print('\n')
     list_all_restaurants(True)
   except ValueError :
