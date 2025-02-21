@@ -1,8 +1,15 @@
 import os
 
+###################################################
+#             GLOBAL VARIABLES                    #
+#  (I'll remove them as soon as I learn how to)   #
+###################################################
 restaurants = []
 call_menu_flag = True
 
+###################################################
+#                MENU FUCNTIONS                   #
+###################################################
 def title() :
   print('┳┳┓          •    ┳┓  ┓•        ')
   print('┃┃┃┏┓┏┳┓┏┓┏┳┓┓┏┓  ┃┃┏┓┃┓┓┏┏┓┏┓┓┏')
@@ -25,6 +32,9 @@ def illegal_choice() :
   print('\nError. Only numbers are accepted')
   print('Try again!')
 
+###################################################
+#             LIST ALL RESTAURANTS                #
+###################################################
 def list_all_restaurants(call_menu_flag) :
   index = 1
   if len(restaurants) == 0:
@@ -36,7 +46,10 @@ def list_all_restaurants(call_menu_flag) :
       index += 1
   if call_menu_flag == True :
     callback_menu()
-  
+
+###################################################
+#             ADD RESTAURANTS                     #
+###################################################
 def add_new_restaurant() :
   print('\n|||| Let\'s add a new Restaurant ||||')
   new_rest = input('\nRestaurant name: ')
@@ -48,6 +61,9 @@ def add_new_restaurant() :
   else :
     callback_menu()
 
+###################################################
+#             REMOVE RESTAURANTS                  #
+###################################################
 def remove_restaurant() :
   list_all_restaurants(False)
   chosen_res = input('\nWhich of them do you want to remove? ')
@@ -74,9 +90,15 @@ def remove_restaurant() :
   except ValueError :
     illegal_choice()
 
+###################################################
+#             ACTIVATE RESTAURANTS                #
+###################################################
 def activate_restaurant() :
   print('Let\'s activate a Restaurant:')
 
+###################################################
+#             READ USER INPUT                     #
+###################################################
 def read_first_user_input() :
   userinput = input('Choose an option: ')
   try :
@@ -97,11 +119,17 @@ def read_first_user_input() :
   except ValueError :
     illegal_choice()
 
+###################################################
+#             CLEAR FUNCTION                      #
+###################################################
 def clear_all_and_quit():
   os.system('clear')
   print('Goodbye!')
   exit()
 
+###################################################
+#                   MAIN                          #
+###################################################
 def main() :
   os.system('clear')
   title()
