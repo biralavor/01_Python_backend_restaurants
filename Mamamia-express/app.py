@@ -66,19 +66,23 @@ def add_new_restaurant() :
 ###################################################
 def remove_restaurant() :
   list_all_restaurants(False)
-  chosen_res = input('\nWhich of them do you want to remove? ')
-  try :
-    chosen_res = int(chosen_res)
-    if 1<= chosen_res <= len(restaurants) :
-      print('Now removing: ')
-      print(f'{restaurants[chosen_res - 1]}')
-      restaurants.pop(chosen_res - 1)
-    else :
-      print('Invalid option')
-    print('\n')
-    list_all_restaurants(True)
-  except ValueError :
-    illegal_choice()
+  if len(restaurants) == 0:
+    print('You need to add a restaurant first!')
+    callback_menu()
+  else :
+    chosen_res = input('\nWhich of them do you want to remove? ')
+    try :
+      chosen_res = int(chosen_res)
+      if 1<= chosen_res <= len(restaurants) :
+        print('Now removing: ')
+        print(f'{restaurants[chosen_res - 1]}')
+        restaurants.pop(chosen_res - 1)
+      else :
+        print('Invalid option')
+      print('\n')
+      list_all_restaurants(True)
+    except ValueError :
+      illegal_choice()
 
 ###################################################
 #             ACTIVATE RESTAURANTS                #
