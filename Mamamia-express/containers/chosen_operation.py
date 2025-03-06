@@ -13,6 +13,8 @@ class Operations:
 ###################################################
   @staticmethod
   def chosen_operation(userinput, restaurants, next_operation) :
+    if userinput is None:
+        return
     match userinput :
       case 1 :
         RestaurantsDB.list_all_restaurants(restaurants, call_menu_flag,next_operation)
