@@ -45,16 +45,19 @@ class RestaurantsDB :
       return restaurants
     else :
       while True :
-        chosen_res = input('\nWhich of them do you want to remove? ')
+        chosen_res = input('\nChoose the restaurant number to be removed. (0 = cancel the operation) ')
         try :
           chosen_res = int(chosen_res)
-          if 1 <= chosen_res <= len(restaurants) :
+          if chosen_res == 0 :
+            print('Operation cancelled!')
+            CallBacks.callback_menu(restaurants, next_operation)
+            return restaurants
+          elif 1 <= chosen_res <= len(restaurants) :
             print('Now removing: ')
             print(f'{restaurants[chosen_res - 1]}')
             restaurants.pop(chosen_res - 1)
           else :
-            print('Invalid option')
-          print('\n')
+            print('Invalid Restaurant. Check the chosen number and try again!')
           RestaurantsDB.list_all_restaurants(restaurants, True, next_operation)
           return restaurants
         except ValueError :
