@@ -4,7 +4,6 @@ import os
 #             GLOBAL VARIABLES                    #
 #  (I'll remove them as soon as I learn how to)   #
 ###################################################
-restaurants = []
 call_menu_flag = True
 
 ###################################################
@@ -26,7 +25,7 @@ def show_menu() :
 def callback_menu() :
   input('\nPress Enter to go back to Menu...')
   os.system('clear')
-  main()
+  main(restaurants)
 
 def illegal_choice() :
   print('\nError. Only numbers are accepted')
@@ -35,7 +34,7 @@ def illegal_choice() :
 ###################################################
 #             LIST ALL RESTAURANTS                #
 ###################################################
-def list_all_restaurants(call_menu_flag) :
+def list_all_restaurants(restaurants, call_menu_flag) :
   index = 1
   if len(restaurants) == 0:
     print('\n<<<<<< No restaurants added yet! >>>>>>')
@@ -50,22 +49,22 @@ def list_all_restaurants(call_menu_flag) :
 ###################################################
 #             ADD RESTAURANTS                     #
 ###################################################
-def add_new_restaurant() :
+def add_new_restaurant(restaurants) :
   print('\n|||| Let\'s add a new Restaurant ||||')
   new_rest = input('\nRestaurant name: ')
   restaurants.append(new_rest)
   print(f'Restaurant called {new_rest} added successfully!')
   another = input('\nDo you want to add another one? (y/n) ')
   if another == 'y' :
-    add_new_restaurant()
+    add_new_restaurant(restaurants)
   else :
     callback_menu()
 
 ###################################################
 #             REMOVE RESTAURANTS                  #
 ###################################################
-def remove_restaurant() :
-  list_all_restaurants(False)
+def remove_restaurant(restaurants) :
+  list_all_restaurants(restaurants, False)
   if len(restaurants) == 0:
     print('You need to add a restaurant first!')
     callback_menu()
@@ -80,7 +79,7 @@ def remove_restaurant() :
       else :
         print('Invalid option')
       print('\n')
-      list_all_restaurants(True)
+      list_all_restaurants(restaurants, True)
     except ValueError :
       illegal_choice()
 
@@ -93,17 +92,17 @@ def activate_restaurant() :
 ###################################################
 #             READ USER INPUT                     #
 ###################################################
-def read_first_user_input() :
+def read_first_user_input(restaurants) :
   userinput = input('Choose an option: ')
   try :
     userinput = int(userinput)
     match userinput :
       case 1 :
-        list_all_restaurants(True)
+        list_all_restaurants(restaurants, True)
       case 2 :
-        add_new_restaurant()
+        add_new_restaurant(restaurants)
       case 3 :
-        remove_restaurant()
+        remove_restaurant(restaurants)
       case 4 :
         activate_restaurant()
       case 5 :
@@ -124,11 +123,12 @@ def clear_all_and_quit():
 ###################################################
 #                   MAIN                          #
 ###################################################
-def main() :
+def main(restaurants) :
   os.system('clear')
   title()
   show_menu()
-  read_first_user_input()
+  read_first_user_input(restaurants)
 
-if __name__ == '__main__' :
-  main()
+if __name__ == "__main__" :
+  restaurants = []
+  main(restaurants)
